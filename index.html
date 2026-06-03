@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulaire de Naturalisation</title>
+
+<title>Fòmilè Enskripsyon ONG</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
@@ -11,167 +12,225 @@
 body{
     font-family:Arial,sans-serif;
     background:#f2f2f2;
+    margin:0;
     padding:20px;
 }
+
 .container{
     max-width:900px;
     margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
 }
+
 h1{
     text-align:center;
+    color:#003366;
 }
+
+h2{
+    margin-top:30px;
+    color:#444;
+    border-bottom:2px solid #ddd;
+    padding-bottom:5px;
+}
+
 label{
     display:block;
-    margin-top:15px;
+    margin-top:12px;
     font-weight:bold;
 }
-input,select,textarea{
+
+input, select, textarea{
     width:100%;
     padding:10px;
     margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
 }
+
+textarea{
+    min-height:100px;
+}
+
 button{
-    margin-top:20px;
+    margin-top:25px;
     padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#0066cc;
+    color:white;
+    font-size:16px;
     cursor:pointer;
 }
-#pdfContent{
-    padding:20px;
+
+button:hover{
+    background:#004c99;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<h1>Demande de Naturalisation</h1>
+<h1>FÒMILÈ ENSKRIPSYON ÒGANIZASYON</h1>
 
-<div id="formulaire">
+<h2>Enfòmasyon Pèsonèl</h2>
 
-<label>Nom complet</label>
+<label>Non konplè</label>
 <input type="text" id="nom">
 
-<label>Date de naissance</label>
+<label>Dat nesans</label>
 <input type="date" id="dateNaissance">
 
-<label>Lieu de naissance</label>
+<label>Kote nesans</label>
 <input type="text" id="lieuNaissance">
 
-<label>Sexe</label>
+<label>Sèks</label>
 <select id="sexe">
-<option>Homme</option>
-<option>Femme</option>
+<option>Gason</option>
+<option>Fi</option>
 </select>
 
-<label>Nationalité actuelle</label>
+<label>Nasyonalite</label>
 <input type="text" id="nationalite">
 
-<label>Adresse actuelle</label>
+<label>Adrès</label>
 <input type="text" id="adresse">
 
-<label>Téléphone</label>
+<label>Telefòn</label>
 <input type="text" id="telephone">
 
-<label>Email</label>
+<label>Imèl</label>
 <input type="email" id="email">
 
-<label>État civil</label>
+<label>Eta sivil</label>
 <select id="etatCivil">
-<option>Célibataire</option>
-<option>Marié(e)</option>
-<option>Divorcé(e)</option>
-<option>Veuf(ve)</option>
+<option>Selibatè</option>
+<option>Marye</option>
+<option>Divòse</option>
+<option>Vèf/Vèv</option>
 </select>
 
-<label>Nom du conjoint</label>
-<input type="text" id="conjoint">
-
-<label>Nom du père</label>
+<label>Non Papa</label>
 <input type="text" id="pere">
 
-<label>Nom de la mère</label>
+<label>Non Manman</label>
 <input type="text" id="mere">
 
-<label>Numéro de passeport</label>
-<input type="text" id="passeport">
+<h2>Edikasyon ak Travay</h2>
 
-<label>Date d'expiration du passeport</label>
-<input type="date" id="expiration">
-
-<label>Date d'entrée dans le pays</label>
-<input type="date" id="entree">
-
-<label>Type de visa ou résidence</label>
-<input type="text" id="visa">
-
-<label>Nombre d'années de résidence</label>
-<input type="number" id="annees">
-
-<label>Profession</label>
-<input type="text" id="profession">
-
-<label>Employeur</label>
-<input type="text" id="employeur">
-
-<label>Niveau d'études</label>
+<label>Nivo etid</label>
 <input type="text" id="etudes">
 
-<label>Avez-vous un casier judiciaire ?</label>
-<select id="casier">
-<option>Non</option>
-<option>Oui</option>
-</select>
+<label>Pwofesyon</label>
+<input type="text" id="profession">
 
-<label>Langues parlées</label>
+<label>Anplwayè</label>
+<input type="text" id="employeur">
+
+<label>Lang ou pale</label>
 <input type="text" id="langues">
 
-<label>Motif de la naturalisation</label>
+<h2>Kesyon Wi / Non</h2>
+
+<label>Eske ou vle patisipe nan aktivite òganizasyon an?</label>
+<select id="q1">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<label>Eske ou dispoze respekte règ òganizasyon an?</label>
+<select id="q2">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<label>Eske ou dispoze kolabore ak lòt manm yo?</label>
+<select id="q3">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<label>Eske ou dispoze patisipe nan reyinyon yo lè sa posib?</label>
+<select id="q4">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<label>Eske ou dispoze ede kominote a atravè aktivite òganizasyon an?</label>
+<select id="q5">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<label>Eske ou dakò bay enfòmasyon ki egzat nan fòm sa a?</label>
+<select id="q6">
+<option>Wi</option>
+<option>Non</option>
+</select>
+
+<h2>Motivasyon</h2>
+
+<label>Poukisa ou vle rantre nan òganizasyon an?</label>
 <textarea id="motif"></textarea>
 
-<button onclick="genererPDF()">Télécharger PDF</button>
+<label>Siyati (ekri non ou)</label>
+<input type="text" id="signature">
 
-</div>
+<button onclick="telechajePDF()">Telechaje PDF</button>
 
 </div>
 
 <script>
 
-function genererPDF(){
+function telechajePDF(){
 
 const contenu = `
-<div id="pdfContent">
-<h1>Demande de Naturalisation</h1>
+<div style="font-family:Arial;padding:20px">
 
-<p><b>Nom:</b> ${nom.value}</p>
-<p><b>Date de naissance:</b> ${dateNaissance.value}</p>
-<p><b>Lieu de naissance:</b> ${lieuNaissance.value}</p>
-<p><b>Sexe:</b> ${sexe.value}</p>
-<p><b>Nationalité:</b> ${nationalite.value}</p>
-<p><b>Adresse:</b> ${adresse.value}</p>
-<p><b>Téléphone:</b> ${telephone.value}</p>
-<p><b>Email:</b> ${email.value}</p>
-<p><b>État civil:</b> ${etatCivil.value}</p>
-<p><b>Conjoint:</b> ${conjoint.value}</p>
-<p><b>Père:</b> ${pere.value}</p>
-<p><b>Mère:</b> ${mere.value}</p>
-<p><b>Passeport:</b> ${passeport.value}</p>
-<p><b>Expiration:</b> ${expiration.value}</p>
-<p><b>Date d'entrée:</b> ${entree.value}</p>
-<p><b>Visa/Résidence:</b> ${visa.value}</p>
-<p><b>Années de résidence:</b> ${annees.value}</p>
-<p><b>Profession:</b> ${profession.value}</p>
-<p><b>Employeur:</b> ${employeur.value}</p>
-<p><b>Études:</b> ${etudes.value}</p>
-<p><b>Casier judiciaire:</b> ${casier.value}</p>
-<p><b>Langues:</b> ${langues.value}</p>
-<p><b>Motif:</b> ${motif.value}</p>
+<h1 style="text-align:center">FÒMILÈ ENSKRIPSYON ÒGANIZASYON</h1>
+
+<h2>Enfòmasyon Pèsonèl</h2>
+
+<p><b>Non:</b> ${nom.value}</p>
+<p><b>Dat nesans:</b> ${dateNaissance.value}</p>
+<p><b>Kote nesans:</b> ${lieuNaissance.value}</p>
+<p><b>Sèks:</b> ${sexe.value}</p>
+<p><b>Nasyonalite:</b> ${nationalite.value}</p>
+<p><b>Adrès:</b> ${adresse.value}</p>
+<p><b>Telefòn:</b> ${telephone.value}</p>
+<p><b>Imèl:</b> ${email.value}</p>
+<p><b>Eta sivil:</b> ${etatCivil.value}</p>
+<p><b>Papa:</b> ${pere.value}</p>
+<p><b>Manman:</b> ${mere.value}</p>
+
+<h2>Edikasyon ak Travay</h2>
+
+<p><b>Nivo etid:</b> ${etudes.value}</p>
+<p><b>Pwofesyon:</b> ${profession.value}</p>
+<p><b>Anplwayè:</b> ${employeur.value}</p>
+<p><b>Lang:</b> ${langues.value}</p>
+
+<h2>Kesyon Wi/Non</h2>
+
+<p><b>Patisipe nan aktivite:</b> ${q1.value}</p>
+<p><b>Respekte règ:</b> ${q2.value}</p>
+<p><b>Kolabore ak lòt manm:</b> ${q3.value}</p>
+<p><b>Patisipe nan reyinyon:</b> ${q4.value}</p>
+<p><b>Ede kominote a:</b> ${q5.value}</p>
+<p><b>Enfòmasyon egzat:</b> ${q6.value}</p>
+
+<h2>Motivasyon</h2>
+
+<p>${motif.value}</p>
 
 <br><br>
-<p>Signature: ________________________</p>
+
+<p><b>Siyati:</b> ${signature.value}</p>
 
 </div>
 `;
@@ -181,11 +240,15 @@ element.innerHTML = contenu;
 
 html2pdf()
 .set({
-margin:10,
-filename:'Demande_Naturalisation.pdf',
-image:{type:'jpeg',quality:1},
-html2canvas:{scale:2},
-jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+    margin:10,
+    filename:'Enskripsyon_ONG.pdf',
+    image:{type:'jpeg',quality:1},
+    html2canvas:{scale:2},
+    jsPDF:{
+        unit:'mm',
+        format:'a4',
+        orientation:'portrait'
+    }
 })
 .from(element)
 .save();
