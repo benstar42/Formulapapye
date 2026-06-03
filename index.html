@@ -1,149 +1,198 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiche d'Inscription - Carte de Résidence</title>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire de Naturalisation</title>
 
-    <style>
-        /* --- ESTIL POU L PARÈT TANKOU FEÝ PAPYE --- */
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #d1d8e0; /* Fond dèyè a parèt tankou yon tab */
-            margin: 0;
-            padding: 40px 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-            color: #000;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        /* Fèy papye blan an */
-        .paper-sheet {
-            background-color: #ffffff;
-            width: 800px;
-            min-height: 1000px;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            position: relative;
-        }
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f2f2;
+    padding:20px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+h1{
+    text-align:center;
+}
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+}
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    cursor:pointer;
+}
+#pdfContent{
+    padding:20px;
+}
+</style>
+</head>
 
-        /* Tèt fèy papye a */
-        .paper-header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px double #000;
-            padding-bottom: 20px;
-        }
+<body>
 
-        .paper-header h1 {
-            font-size: 22px;
-            text-transform: uppercase;
-            margin: 0 0 5px 0;
-            letter-spacing: 1px;
-        }
+<div class="container">
 
-        .paper-header h2 {
-            font-size: 16px;
-            text-transform: uppercase;
-            margin: 0;
-            color: #333;
-            font-weight: normal;
-        }
+<h1>Demande de Naturalisation</h1>
 
-        .instruction-text {
-            font-style: italic;
-            font-size: 14px;
-            margin-bottom: 30px;
-            color: #444;
-            border-left: 3px solid #000;
-            padding-left: 10px;
-        }
+<div id="formulaire">
 
-        /* --- FÒMILÈ SOU PAPYE A --- */
-        .form-title {
-            font-size: 16px;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-decoration: underline;
-            margin-bottom: 20px;
-        }
+<label>Nom complet</label>
+<input type="text" id="nom">
 
-        .input-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+<label>Date de naissance</label>
+<input type="date" id="dateNaissance">
 
-        .field-box {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
+<label>Lieu de naissance</label>
+<input type="text" id="lieuNaissance">
 
-        .field-box label {
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
+<label>Sexe</label>
+<select id="sexe">
+<option>Homme</option>
+<option>Femme</option>
+</select>
 
-        /* Liy fòmilè yo parèt tankou kote y ap ekri ak plim */
-        .field-box input, .field-box select {
-            border: none;
-            border-bottom: 1px solid #000;
-            padding: 8px 5px;
-            font-size: 16px;
-            font-family: 'Times New Roman', Times, serif;
-            outline: none;
-            background: transparent;
-        }
+<label>Nationalité actuelle</label>
+<input type="text" id="nationalite">
 
-        .field-box input:focus {
-            border-bottom: 2px solid #000;
-            background-color: #fafafa;
-        }
+<label>Adresse actuelle</label>
+<input type="text" id="adresse">
 
-        /* --- APÈSÌ KAT LA SOU PAPYE A --- */
-        .preview-section {
-            margin-top: 5px;
-            border-top: 2px dashed #000;
-            padding-top: 40px;
-        }
+<label>Téléphone</label>
+<input type="text" id="telephone">
 
-        .preview-title {
-            font-size: 14px;
-            font-style: italic;
-            color: #555;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+<label>Email</label>
+<input type="email" id="email">
 
-        /* Pou nou ka kache bwat sa a nan PDF la nèt */
-        #pdf-area {
-            width: 500px;
-            margin: 0 auto;
-            padding: 10px;
-            background: #fff;
-        }
+<label>État civil</label>
+<select id="etatCivil">
+<option>Célibataire</option>
+<option>Marié(e)</option>
+<option>Divorcé(e)</option>
+<option>Veuf(ve)</option>
+</select>
 
-        .residence-card {
-            width: 500px;
-            height: 300px;
-            background: linear-gradient(135deg, #ffffff 0%, #e3e9ed 100%);
-            border-radius: 12px;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
-            border: 2px solid #2c3e50;
-            color: #1e272e;
-        }
+<label>Nom du conjoint</label>
+<input type="text" id="conjoint">
 
-        .residence-card::before {
-            content: "RÉSIDENT";
+<label>Nom du père</label>
+<input type="text" id="pere">
+
+<label>Nom de la mère</label>
+<input type="text" id="mere">
+
+<label>Numéro de passeport</label>
+<input type="text" id="passeport">
+
+<label>Date d'expiration du passeport</label>
+<input type="date" id="expiration">
+
+<label>Date d'entrée dans le pays</label>
+<input type="date" id="entree">
+
+<label>Type de visa ou résidence</label>
+<input type="text" id="visa">
+
+<label>Nombre d'années de résidence</label>
+<input type="number" id="annees">
+
+<label>Profession</label>
+<input type="text" id="profession">
+
+<label>Employeur</label>
+<input type="text" id="employeur">
+
+<label>Niveau d'études</label>
+<input type="text" id="etudes">
+
+<label>Avez-vous un casier judiciaire ?</label>
+<select id="casier">
+<option>Non</option>
+<option>Oui</option>
+</select>
+
+<label>Langues parlées</label>
+<input type="text" id="langues">
+
+<label>Motif de la naturalisation</label>
+<textarea id="motif"></textarea>
+
+<button onclick="genererPDF()">Télécharger PDF</button>
+
+</div>
+
+</div>
+
+<script>
+
+function genererPDF(){
+
+const contenu = `
+<div id="pdfContent">
+<h1>Demande de Naturalisation</h1>
+
+<p><b>Nom:</b> ${nom.value}</p>
+<p><b>Date de naissance:</b> ${dateNaissance.value}</p>
+<p><b>Lieu de naissance:</b> ${lieuNaissance.value}</p>
+<p><b>Sexe:</b> ${sexe.value}</p>
+<p><b>Nationalité:</b> ${nationalite.value}</p>
+<p><b>Adresse:</b> ${adresse.value}</p>
+<p><b>Téléphone:</b> ${telephone.value}</p>
+<p><b>Email:</b> ${email.value}</p>
+<p><b>État civil:</b> ${etatCivil.value}</p>
+<p><b>Conjoint:</b> ${conjoint.value}</p>
+<p><b>Père:</b> ${pere.value}</p>
+<p><b>Mère:</b> ${mere.value}</p>
+<p><b>Passeport:</b> ${passeport.value}</p>
+<p><b>Expiration:</b> ${expiration.value}</p>
+<p><b>Date d'entrée:</b> ${entree.value}</p>
+<p><b>Visa/Résidence:</b> ${visa.value}</p>
+<p><b>Années de résidence:</b> ${annees.value}</p>
+<p><b>Profession:</b> ${profession.value}</p>
+<p><b>Employeur:</b> ${employeur.value}</p>
+<p><b>Études:</b> ${etudes.value}</p>
+<p><b>Casier judiciaire:</b> ${casier.value}</p>
+<p><b>Langues:</b> ${langues.value}</p>
+<p><b>Motif:</b> ${motif.value}</p>
+
+<br><br>
+<p>Signature: ________________________</p>
+
+</div>
+`;
+
+const element = document.createElement("div");
+element.innerHTML = contenu;
+
+html2pdf()
+.set({
+margin:10,
+filename:'Demande_Naturalisation.pdf',
+image:{type:'jpeg',quality:1},
+html2canvas:{scale:2},
+jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+})
+.from(element)
+.save();
+
+}
+
+</script>
+
+</body>
+</html>
